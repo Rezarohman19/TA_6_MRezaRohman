@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather Dashboard</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+  <div class="container">
+
+    <header class="topbar">
+      <div class="brand">🌤 Weather Dashboard</div>
+      <div class="controls">
+        <button id="refreshBtn" class="btn">⟳ Refresh</button>
+        <button id="unitToggle" class="btn">°C</button>
+        <button id="themeToggle" class="btn">☀️ Light</button>
+      </div>
+    </header>
+
+    <section class="search-row card">
+      <div class="search-left">
+        <input id="searchInput" placeholder="Cari kota... (mis. Jakarta, Tokyo)" autocomplete="off" />
+        <div id="suggestions" class="suggestions"></div>
+      </div>
+      <div class="search-right">
+        <button id="saveFavBtn" class="btn">💾 Simpan Favorit</button>
+        <div id="statusText" class="status">Ready</div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <aside class="leftpanel card">
+        <h3>Favorit</h3>
+        <div id="favList" class="fav-list"></div>
+      </aside>
+
+      <main class="mainpanel">
+        <div id="loading" class="loading hidden">Memuat...</div>
+
+        <div class="current card" id="currentCard">
+          <div class="current-top">
+            <div>
+              <h2 id="location">-</h2>
+              <div id="timestamp" class="muted">-</div>
+            </div>
+            <div class="icon-block">
+              <img id="weatherIcon" src="" alt="" />
+              <div id="condition" class="muted">-</div>
+            </div>
+          </div>
+
+          <div class="current-body">
+            <div class="temp-big">
+              <span id="temp">--</span><sup id="tempUnit">°C</sup>
+            </div>
+            <div class="metrics">
+              <div>Feels: <strong id="feels">--</strong></div>
+              <div>Humidity: <strong id="humidity">--</strong></div>
+              <div>Wind: <strong id="wind">--</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="map card">
+          <div id="map" style="height:300px;border-radius:8px;"></div>
+        </div>
+
+        <div class="forecast card">
+          <h3>Prakiraan 5 Hari</h3>
+          <div id="forecastRow" class="forecast-row"></div>
+        </div>
+      </main>
+    </section>
+
+    <footer class="footer card muted">API via OpenWeatherMap · Proxy: api_weather.php</footer>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
